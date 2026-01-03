@@ -38,3 +38,12 @@ type ApiResult<T> = {
     data?: T;
     error?: string;
 };
+
+interface Service{
+    id:number;
+    name:string;
+    createdAt:Date;
+    category:string;
+    description:string;
+    mark:number;
+}

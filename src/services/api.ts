@@ -56,15 +56,18 @@ export const register = async (user: User): Promise<ApiResult<any>> => {
 };
 
 
-export const getAllServices = async ()=>{
-    axios.get("http://localhost:8080/api/service")
-        .then(function (response){
-            console.log(response)
-        })
-        .catch(function (error){
-            console.error("API error:", error);
-            throw error;
-        })
+export const getAllServices = async ():Promise<Array<Service>> =>{
+
+    try{
+        const response= await axios.get("http://localhost:8080/api/service")
+        console.log(response.data)
+        return response.data;
+    }
+    catch (e){
+        console.error("API error:", e);
+        throw e;
+    }
+
 }
 
 export const getServiceById = async (id:number)=>{
