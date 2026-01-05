@@ -39,11 +39,11 @@ type ApiResult<T> = {
     error?: string;
 };
 
-interface Service{
-    id:number;
-    name:string;
-    createdAt:Date;
-    category:string;
-    description:string;
-    mark:number;
+export interface Service {
+    id: number;
+    name: string;
+    createdAt: string;
+    category: string;
+    description: string | null;
+    mark: number;
 }

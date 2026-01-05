@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import {getAllServices} from "../services/api";
+import ServiceCard from "../components/ServiceCard"
+
 
 
 const Services = () =>{
@@ -11,16 +13,20 @@ const Services = () =>{
         const fetServices= async ()=>{
             const response = await getAllServices()
             setServices(response)
+
         }
 
+        fetServices();
     }, []);
 
     return(
         <div>
-            <h1>Here are services availables</h1>
-            <ul className="flex justify-center gap-4">
-
-            </ul>
+            <h1>Here are services available</h1>
+            <div className="flex justify-center gap-4">
+                {services.map((service)=>{
+                    return <ServiceCard key={service.id} service={service}/>
+                })}
+            </div>
         </div>
     )
 }

@@ -20,7 +20,7 @@ const Home = () => {
             "image":"https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80",
             "categorie":"design",
             "name":"Professional Logo Design",
-            "description":"Get a unique profesional logo that represent your brand perfectly",
+            "description":"Get a unique professional logo that represent your brand perfectly",
             "mark":4.1,
             "client":{
                 "avatar":""
