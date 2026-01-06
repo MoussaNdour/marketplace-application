@@ -157,7 +157,7 @@ const Home = () => {
                     })}
 
                 </div>
-                <button className="p-[10px] border-[0.3px] rounded text-sm hover:bg-amber-500 hover:text-white cursor-pointer">View All Serices</button>
+                <Link to="/services" className="p-[10px] border-[0.3px] rounded text-sm hover:bg-amber-500 hover:text-white cursor-pointer">View All Serices</Link>
 
             </section>
             <section className="bg-sky-500 p-[100px] flex flex-col justify-center items-center gap-[20px]">

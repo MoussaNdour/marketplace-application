@@ -10,6 +10,7 @@ import MainLayout from "./pages/layout/MainLayout";
 import EmptyLayout from "./pages/layout/EmptyLayout";
 import Register from "./pages/Register";
 import ProtectedRoute from "./pages/layout/ProtectedRoute";
+import ProvidersByService from "./pages/ProvidersByService";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
                         <About/>
                     </ProtectedRoute>} />
                     <Route path="/service/:id" element={<Service />} />
+                    <Route path="/providers/:serviceId" element={<ProvidersByService/>} />
                 </Route>
 
                 <Route element={<EmptyLayout />}>

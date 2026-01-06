@@ -1,5 +1,6 @@
 import {NavLink, Link} from "react-router-dom";
 import { Menu } from "lucide-react";
+import {isAuth} from "../services/auth";
 
 const Navbar = () => {
 
@@ -18,7 +19,7 @@ const Navbar = () => {
 
             </nav>
 
-            <Link to="/login"><button className="text-white bg-sky-500 hover:opacity-50 px-[15px] py-[5px] rounded cursor-pointer">Login</button></Link>
+            {!isAuth() && <Link to="/login"><button className="text-white bg-sky-500 hover:opacity-50 px-[15px] py-[5px] rounded cursor-pointer">Login</button></Link>}
 
         </div>
     )

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getAllServices} from "../services/api";
 import ServiceCard from "../components/ServiceCard"
+import {Service} from "../types";
 
 
 
@@ -21,7 +22,7 @@ const Services = () =>{
 
     return(
         <div>
-            <h1>Here are services available</h1>
+            <h1 className="text-center mt-2 mb-2">Here are services available</h1>
             <div className="flex justify-center gap-4">
                 {services.map((service)=>{
                     return <ServiceCard key={service.id} service={service}/>

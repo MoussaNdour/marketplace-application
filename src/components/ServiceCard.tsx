@@ -1,34 +1,22 @@
-import type { Service } from "../types";
+import React from "react";
+import {Link} from "react-router-dom";
 
-type Props = {
-    service: Service;
-};
 
-const ServiceCard = ({ service }: Props) => {
+
+
+const ServiceCard = ({ service }: {service:any}) => {
     return (
-        <div className="w-[300px] rounded-lg border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
-
-            {/* Header */}
-            <div className="p-3 border-b">
-        <span className="text-xs bg-slate-100 px-2 py-1 rounded-full text-slate-600">
-          {service.category}
-        </span>
+        <div className="rounded">
+            <div className="relative h-[120px] lg:h-[220px] w-[199px] lg:w-[399px] rounded" style={{ backgroundImage: `url(http://localhost:8080${service.imagePath})`, backgroundSize : 'cover' }}>
+                <p className="absolute text-[10px] bg-white p-[5px] rounded-[20px] top-2 right-2">{service.category}</p>
             </div>
-
-            {/* Content */}
-            <div className="p-4 flex flex-col gap-2">
-                <h2 className="text-sm font-semibold text-slate-800">
-                    {service.name}
-                </h2>
-
-                <p className="text-xs text-slate-500 line-clamp-3">
-                    {service.description ?? "No description provided"}
-                </p>
-            </div>
-
-            {/* Footer */}
-            <div className="p-3 border-t text-xs text-slate-400">
-                Rating: {service.mark}
+            <div className="flex flex-col h-[120px] lg:h-[220px] w-[199px] lg:w-[399px] bg-white p-[10px] border-[0.5px] gap-y-[3px] lg:gap-y-[20px] rounded">
+                <h2 className="text-sm">{service.name}</h2>
+                <p className="text-[10px] lg:text-sm text-slate-400">{service.description}</p>
+                <div className="lg:flex gap-[20px]">
+                    <Link to={"/providers/" + service.id} className="text-xs text-white bg-black rounded p-[3px] hover:opacity-50">See providers for this service</Link>
+                    <Link to="/" className="text-xs text-white bg-black rounded p-[3px] hover:opacity-50">See proposals for this service</Link>
+                </div>
             </div>
 
         </div>

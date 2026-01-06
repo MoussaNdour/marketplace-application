@@ -1,6 +1,6 @@
-enum Role{ADMIN="ADMIN",PROVIDER="PROVIDER",CLIENT="CLIENT"}
+export enum Role{ADMIN="ADMIN",PROVIDER="PROVIDER",CLIENT="CLIENT"}
 
-interface User
+export interface User
 {
     readonly role?:string;
     readonly id?:number;
@@ -10,30 +10,30 @@ interface User
     password:string;
 }
 
-interface Provider extends User
+export interface Provider extends User
 {
     profession:string;
 }
 
-interface Client extends User
+export interface Client extends User
 {
     profession?:string;
 }
 
-interface Login
+export interface Login
 {
     email:string;
     password:string;
 }
 
-interface ApiResponse
+export interface ApiResponse
 {
     readonly token?:string;
     user?:User;
 }
 
 
-type ApiResult<T> = {
+export type ApiResult<T> = {
     success: boolean;
     data?: T;
     error?: string;
@@ -42,8 +42,9 @@ type ApiResult<T> = {
 export interface Service {
     id: number;
     name: string;
-    createdAt: string;
+    createdAt: string | null;
     category: string;
     description: string | null;
     mark: number;
+    imagePath:string | null;
 }

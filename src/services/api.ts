@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {ApiResponse, ApiResult, Login, Service, User} from "../types";
 
 
 export const connect = async (login:Login):Promise<ApiResult<any>> =>{
@@ -39,7 +40,6 @@ export const register = async (user: User): Promise<ApiResult<any>> => {
             user
         );
 
-        console.log(response.data);
 
         return {
             success: true,
@@ -60,7 +60,7 @@ export const getAllServices = async ():Promise<Array<Service>> =>{
 
     try{
         const response= await axios.get("http://localhost:8080/api/service")
-        console.log(response.data)
+
         return response.data;
     }
     catch (e){
