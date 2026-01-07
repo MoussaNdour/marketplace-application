@@ -153,7 +153,7 @@ const Home = () => {
                 <div className="grid lg:grid-cols-2 lg:grid-rows-2 gap-x-5 gap-y-5 m-[15px]">
 
                     {services.map((service)=>{
-                        return <Link to={"service/"+ service.id} key={service.id}><ServicePreview service={service}/></Link>
+                        return <Link to={"service/"+ service.id+"/providers"} key={service.id}><ServicePreview service={service}/></Link>
                     })}
 
                 </div>

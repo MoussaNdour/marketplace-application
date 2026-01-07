@@ -28,7 +28,7 @@ const App = () => {
                         <About/>
                     </ProtectedRoute>} />
                     <Route path="/service/:id" element={<Service />} />
-                    <Route path="/providers/:serviceId" element={<ProvidersByService/>} />
+                    <Route path="service/:serviceId/providers/" element={<ProvidersByService/>} />
                 </Route>
 
                 <Route element={<EmptyLayout />}>
