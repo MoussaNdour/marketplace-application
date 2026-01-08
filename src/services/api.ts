@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ApiResponse, ApiResult, Login, Service, User} from "../types";
+import {ApiResponse, ApiResult, Login, Service, User, Provider} from "../types";
 
 
 export const connect = async (login:Login):Promise<ApiResult<any>> =>{
@@ -96,6 +96,22 @@ export const getServicesProposalByProvider= async () => {
             throw error
         })
 
+}
+
+export const getProviderByService = async (idservice:number):Promise<Array<Provider>> =>{
+    try{
+        const response= await axios.get<Provider[]>(`http://localhost:8080/api/service/${idservice}/providers`)
+
+        return response.data
+    }
+    catch(e){
+        if (axios.isAxiosError(e)) {
+            console.error(e.response?.data)
+        } else {
+            console.error(e)
+        }
+        throw e
+    }
 }
 
 

@@ -20,7 +20,6 @@ export function isTokenExpired(token: string | null):boolean {
     }
     else{
         const decoded=jwtDecode(token)
-        console.log(decoded)
 
 
         const currentTime=Math.floor(Date.now()/1000)
@@ -31,7 +30,6 @@ export function isTokenExpired(token: string | null):boolean {
 
             return true;
         } else {
-            console.log('Token is still valid.');
 
             return false;
         }

@@ -14,7 +14,7 @@ const ProviderCard = ({provider}:Props) => {
         <div className="rounded-[10px] w-[300px] h-[250px] bg-sky-500">
             <div className="flex flex-col justify-center mt-[15px]">
                 <div className="rounded-full w-[70px] h-[70px] m-auto"  style={{ backgroundImage:`url(${profile})`, backgroundSize: "cover" }}></div>
-                <h1 className={"text-white text-center"}>Modou Ndiaye</h1>
+                <h1 className={"text-white text-center"}>{provider.firstname}  {provider.lastname}</h1>
             </div>
             <div className={"mx-[10px] text-white text-justify"}>
                 <p className={"text-sm"}>

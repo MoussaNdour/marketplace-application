@@ -14,7 +14,7 @@ const ServiceCard = ({ service }: {service:any}) => {
                 <h2 className="text-sm">{service.name}</h2>
                 <p className="text-[10px] lg:text-sm text-slate-400">{service.description}</p>
                 <div className="lg:flex gap-[20px]">
-                    <Link to={"/providers/" + service.id} className="text-xs text-white bg-black rounded p-[3px] hover:opacity-50">See providers for this service</Link>
+                    <Link to={"/service/" + service.id+"/providers"} className="text-xs text-white bg-black rounded p-[3px] hover:opacity-50">See providers for this service</Link>
                     <Link to="/" className="text-xs text-white bg-black rounded p-[3px] hover:opacity-50">See proposals for this service</Link>
                 </div>
             </div>
