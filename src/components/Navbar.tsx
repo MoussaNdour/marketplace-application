@@ -13,7 +13,7 @@ const Navbar = () => {
                 <ul className="flex gap-2">
                     <li><NavLink to="/services" ><span className="hover:text-sky-500">Services</span></NavLink></li>
                     <li><NavLink to="/providers" ><span className="hover:text-sky-500">Providers</span></NavLink></li>
-                    <li><NavLink to="/howitwork" ><span className="hover:text-sky-500">How it work</span></NavLink></li>
+                    <li><NavLink to="/servicesproposals" ><span className="hover:text-sky-500">Service Proposals</span></NavLink></li>
                     <li><NavLink to="about" ><span className="hover:text-sky-500">About</span></NavLink></li>
                 </ul>
 

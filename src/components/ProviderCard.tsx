@@ -21,14 +21,14 @@ const ProviderCard = ({provider}:Props) => {
                     _I'm frontend developer with 3 years of experience. I build nice UI using technologies like react and tailwind css
                 </p>
                 <h2>
-                    _Level:Medium
+                    _Level:{provider.level}
                 </h2>
                 <h2>
-                    _3 years of experience
+                    _{provider.yearsOfExperience} year(s) of experience
                 </h2>
             </div>
             <div className={"flex justify-center mt-[10px]"}>
-                <Link to={"/"} className={"bg-amber-400 rounded-[10px] text-white p-[10px] hover:text-white/80"}>Ask Service</Link>
+                <Link to={"/askService"} className={"bg-amber-400 rounded-[10px] text-white p-[10px] hover:text-white/80"}>Ask Service</Link>
             </div>
         </div>
     )

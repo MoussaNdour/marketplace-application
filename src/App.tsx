@@ -11,6 +11,8 @@ import EmptyLayout from "./pages/layout/EmptyLayout";
 import Register from "./pages/Register";
 import ProtectedRoute from "./pages/layout/ProtectedRoute";
 import ProvidersByService from "./pages/ProvidersByService";
+import AskingService from "./pages/AskingService";
+import ServicesProposals from "./pages/ServicesProposals";
 
 
 const App = () => {
@@ -27,8 +29,10 @@ const App = () => {
                     <Route path="/about" element={<ProtectedRoute>
                         <About/>
                     </ProtectedRoute>} />
+                    <Route path="/askService" element={<ProtectedRoute children={<AskingService/>} />} />
                     <Route path="/service/:id" element={<Service />} />
                     <Route path="service/:serviceId/providers/" element={<ProvidersByService/>} />
+                    <Route path={"/servicesproposals"} element={<ServicesProposals />} />
                 </Route>
 
                 <Route element={<EmptyLayout />}>

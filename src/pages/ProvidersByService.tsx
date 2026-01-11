@@ -12,6 +12,7 @@ const ProvidersByService = () => {
         const getAllProviderByService = async () => {
             if (serviceId) {
                 const response = await getProviderByService(Number(serviceId))
+                console.log(response)
                 setProviders(response)
             }
         }

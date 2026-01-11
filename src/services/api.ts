@@ -55,7 +55,6 @@ export const register = async (user: User): Promise<ApiResult<any>> => {
     }
 };
 
-
 export const getAllServices = async ():Promise<Array<Service>> =>{
 
     try{
@@ -68,6 +67,17 @@ export const getAllServices = async ():Promise<Array<Service>> =>{
         throw e;
     }
 
+}
+
+export const getAllServicesProposals= async ():Promise<any> => {
+
+    try{
+        const response=axios.get("http://localhost:8080/api/service-proposal")
+    }
+    catch (e) {
+        
+    }
+    
 }
 
 export const getServiceById = async (id:number)=>{

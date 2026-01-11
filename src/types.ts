@@ -13,6 +13,8 @@ export interface User
 export interface Provider extends User
 {
     profession:string;
+    level:string;
+    yearsOfExperience:string;
 }
 
 export interface Client extends User
@@ -47,4 +49,8 @@ export interface Service {
     description: string | null;
     mark: number;
     imagePath:string | null;
+}
+
+export interface ServiceProposal{
+
 }
