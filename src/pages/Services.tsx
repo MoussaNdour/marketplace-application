@@ -21,9 +21,9 @@ const Services = () =>{
     }, []);
 
     return(
-        <div>
-            <h1 className="text-center mt-2 mb-2">Here are services available</h1>
-            <div className="flex justify-center gap-4">
+        <div className="m-[15px]">
+            <h1 className="text-center mb-2">Here are services available</h1>
+            <div className="grid gap-4 grid-cols-2 place-items-center">
                 {services.map((service)=>{
                     return <ServiceCard key={service.id} service={service}/>
                 })}

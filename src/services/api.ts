@@ -124,4 +124,19 @@ export const getProviderByService = async (idservice:number):Promise<Array<Provi
     }
 }
 
+export const getAllProviders = async ():Promise<Array<Provider>> =>{
 
+    try{
+        const providers= await axios.get("http://localhost:8080/api/providers")
+
+        return providers.data
+    }
+    catch (e) {
+        if (axios.isAxiosError(e)) {
+            console.error(e.response?.data)
+        } else {
+            console.error(e)
+        }
+        throw e
+    }
+}

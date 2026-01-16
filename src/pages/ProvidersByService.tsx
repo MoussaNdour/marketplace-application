@@ -22,10 +22,12 @@ const ProvidersByService = () => {
 
     return (
         <div>
-            <h1>Here are our providers</h1>
-            {providers.map((provider) => (
-                <ProviderCard key={provider.id} provider={provider} />
-            ))}
+            <h1 className="text-center m-[20px] text-2xl">Here are our providers</h1>
+            <div className="grid grid-cols-3 gap-x-[10px] gap-y-[30px] place-items-center">
+                {providers.map((provider) => (
+                    <ProviderCard key={provider.id} provider={provider} />
+                ))}
+            </div>
         </div>
     )
 }

@@ -1,9 +1,18 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {Provider} from "../types";
 
 
 const Providers = () => {
 
+    const [providers, setProviders] = useState<Array<Provider>>()
 
+    useEffect(() => {
+        const fetchProviders = async () =>{
+
+        }
+
+        fetchProviders()
+    }, []);
 
     return(
         <div>
