@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import {Provider} from "../types";
+import { getAllProviders } from "../services/api";
+import ProviderCard from "../components/ProviderCard";
 
 
 const Providers = () => {
@@ -8,7 +10,8 @@ const Providers = () => {
 
     useEffect(() => {
         const fetchProviders = async () =>{
-
+            const response= await getAllProviders()
+            setProviders(response)
         }
 
         fetchProviders()
@@ -16,7 +19,15 @@ const Providers = () => {
 
     return(
         <div>
-            <h1>Here are our providers</h1>
+            <h1 className="text-center text-2xl">Here are our providers</h1>
+            <div className="grid grid-cols-3 place-items-center gap-y-[50px]">
+                {
+                    providers?.map((provider)=>{
+                        return <ProviderCard key={provider.id} provider={provider} />
+                    })
+                }
+            </div>
+
         </div>
     )
 }

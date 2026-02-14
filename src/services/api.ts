@@ -1,64 +1,47 @@
-import axios from 'axios';
-import {ApiResponse, ApiResult, Login, Service, User, Provider} from "../types";
+import axios, {AxiosInstance,AxiosRequestConfig} from 'axios';
+import {Login, Service, User, Provider, ServiceProposal, LoginResponse} from "../types";
 
 
-export const connect = async (login:Login):Promise<ApiResult<any>> =>{
-    try {
-        const response = await fetch("http://localhost:8080/api/auth/connect", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: login.email,
-                password: login.password
-            }),
-        });
-
-        // Vérifier statut de la réponse
-        if (!response.ok) {
-            return {success:false,error:"Email or password incorrect"};
-        }
-        else{
-            let loginResponse: ApiResult<ApiResponse> = {
-                success: true,
-                data: await response.json()
-            };
-
-            return loginResponse;
-        }
-
-    } catch (e) {
-        return {success:false,error:"error network"};
+const axiosConfig:AxiosRequestConfig = {
+    baseURL: 'http://localhost:8080/api',
+    timeout: 10000,
+    headers : {
+        'Content-type' : 'applicaion/json'
     }
 }
 
-export const register = async (user: User): Promise<ApiResult<any>> => {
+const axiosClient:AxiosInstance=axios.create(axiosConfig);
+
+export const connect = async (login:Login):Promise<LoginResponse> =>{
+
+    try{
+        const response=await axios.post("/auth/connect");
+
+        return response.data;
+    }
+    catch(e){
+        throw e;
+    }
+}
+
+export const registerUser = async (user: User): Promise<User> => {
     try {
-        const response = await axios.post(
-            "http://localhost:8080/api/auth/register",
+        const response = await axiosClient.post(
+            "/auth/register",
             user
         );
 
-
-        return {
-            success: true,
-            data: response.data
-        };
+        return response.data;
 
     } catch (error: any) {
-        console.error(error);
-        return {
-            success: false,
-            error: error.response.data.error
-        };
+        throw error;
     }
 };
 
 export const getAllServices = async ():Promise<Array<Service>> =>{
 
     try{
-        const response= await axios.get("http://localhost:8080/api/service")
+        const response= await axiosClient.get("/service")
 
         return response.data;
     }
@@ -69,19 +52,25 @@ export const getAllServices = async ():Promise<Array<Service>> =>{
 
 }
 
-export const getAllServicesProposals= async ():Promise<any> => {
+export const getAllServicesProposals= async ():Promise<Array<ServiceProposal>> => {
 
     try{
-        const response=axios.get("http://localhost:8080/api/service-proposal")
+        const response=await axiosClient.get("/service-proposal")
+        return response.data;
     }
     catch (e) {
-        
+        if (axios.isAxiosError(e)) {
+            console.error(e.response?.data)
+        } else {
+            console.error(e)
+        }
+        throw e
     }
     
 }
 
 export const getServiceById = async (id:number)=>{
-    axios.get(`http://localhost:8080/api/service/${id}`)
+    axiosClient.get(`/service/${id}`)
         .then(function (response){
             console.log(response)
         })
@@ -92,7 +81,7 @@ export const getServiceById = async (id:number)=>{
 
 export const getServicesProposalByProvider= async () => {
 
-    axios.get("http://localhost:8080/api/service-proposal/provider",
+    axiosClient.get("/service-proposal/provider",
         {
             params:{
                 providerId:1
@@ -110,7 +99,7 @@ export const getServicesProposalByProvider= async () => {
 
 export const getProviderByService = async (idservice:number):Promise<Array<Provider>> =>{
     try{
-        const response= await axios.get<Provider[]>(`http://localhost:8080/api/service/${idservice}/providers`)
+        const response= await axiosClient.get<Provider[]>(`/service/${idservice}/providers`)
 
         return response.data
     }
@@ -127,7 +116,7 @@ export const getProviderByService = async (idservice:number):Promise<Array<Provi
 export const getAllProviders = async ():Promise<Array<Provider>> =>{
 
     try{
-        const providers= await axios.get("http://localhost:8080/api/providers")
+        const providers= await axiosClient.get("/provider")
 
         return providers.data
     }

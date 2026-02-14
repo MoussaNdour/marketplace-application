@@ -32,18 +32,7 @@ const Login = () => {
 
 
         const result = await connect({email:username,password:password})
-        if(result.success){
-            if(result.data?.token){
-                localStorage.setItem("token",result.data.token);
-                console.log("Token:"+result.data.token)
-                navigate("/")
-            }
-
-        }
-        else{
-            if(result.error)
-                setGlobalError(result.error)
-        }
+        
     };
 
     return (

@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 const ServiceCard = ({ service }: {service:any}) => {
     return (
         <div className="rounded">
-            <div className="relative h-[120px] lg:h-[220px] w-[199px] lg:w-[399px] rounded" style={{ backgroundImage: `url(http://localhost:8080${service.imagePath})`, backgroundSize : 'cover' }}>
+            <div className="relative h-[120px] lg:h-[220px] w-[199px] lg:w-[399px] rounded" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80)`, backgroundSize : 'cover' }}>
                 <p className="absolute text-[10px] bg-white p-[5px] rounded-[20px] top-2 right-2">{service.category}</p>
             </div>
             <div className="flex flex-col h-[120px] lg:h-[220px] w-[199px] lg:w-[399px] bg-white p-[10px] border-[0.5px] gap-y-[3px] lg:gap-y-[20px] rounded">

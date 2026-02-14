@@ -1,211 +1,133 @@
 
-
+import {useForm} from 'react-hook-form';
 import React, {useState} from 'react';
-import {register} from "../services/api";
+// import { registerUser } from '../services/api';
+import { Client, Provider, User } from '../types';
+
+type FormValues={
+    firstname:string;
+    lastname:string;
+    email:string;
+    role:string;
+    profession:string;
+    password:string;
+    confirmPassword:string;
+}
+
+
 
 const Register = () => {
-    const [firstname, setFirstname] = useState("")
-    const [firstnameError, setFirstnameError] = useState("")
-    const [lastname, setLastname] = useState("")
-    const [lastnameError, setLastnameError] = useState("")
-    const [password, setPassword] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-    const [role, setRole] = useState("CLIENT")
-    const [roleError, setRoleError] = useState("")
-    const [email, setEmail] = useState("")
-    const [emailError, setEmailError] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const [confirmPasswordError, setConfirmPasswordError] = useState("")
-    const [profession, setProfession] = useState("")
-    const [professionError, setProfessionError] = useState("")
-    const [globalErrors, setGlobalErrors] = useState("")
-    const [isSuccess, setIsSuccess] = useState(false)
+    const form = useForm<FormValues>()
+    const { register, handleSubmit, formState } = form;
+    const { errors } = formState;
+    
 
-    const handleSubmit = async (e:React.FormEvent) => {
-        e.preventDefault();
-
-        setFirstnameError("")
-        setLastnameError("")
-        setEmailError("")
-        setRoleError("")
-        setProfessionError("")
-        setPasswordError("")
-        setConfirmPasswordError("")
-        setGlobalErrors("")
-
-        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-
-
-        if(firstname.length===0){
-            setFirstnameError("FirstName is required")
-            return;
-        }
-        if(lastname.length===0){
-            setLastnameError("Lastname is required")
-            return;
-        }
-
-        if(email.length===0){
-            setLastnameError("Email is required")
-            return;
-        }
-
-        if(!regexEmail.test(email)){
-            setEmailError("Email is invalid")
-            return;
-        }
-
-        if(role.length===0){
-            setRoleError("The role is required")
-            return;
-        }
-
-        if(role==="PROVIDER"){
-            if(profession.length===0) {
-                setProfessionError("The profession is required for providers")
-                return;
-            }
-
-        }
-        else if(role==="CLIENT") {
-            setRole("CLIENT")
-        }
-        else{
-            setRoleError("This role is unauthorized")
-            return;
-        }
-
-        let regexPassword=/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,20}/;
-
-        if(!regexPassword.test(password))
+    const onSubmit = (data:FormValues)=>{
+        console.log(data);
+        if(data.password!==data.confirmPassword)
         {
-            setPasswordError("This password is not enought strength")
-            return;
+            console.log("le mot de passe n'a pas ete bien confirmer")
         }
-
-        if(confirmPassword.length===0){
-            setConfirmPasswordError("You need to confirm the password")
-            return;
-        }
-        if(password!=confirmPassword){
-            setConfirmPasswordError("The password is not well confirmed")
-            return;
-        }
-
-        let user:User;
-
-        if(role==="CLIENT")
-        {
-            if(profession!="")
-            {
-                let client:Client;
-
-                client={
-                    role:role,
-                    firstname:firstname,
-                    lastname:lastname,
-                    email:email,
-                    password:password,
-                    profession:profession
-                }
-
-                user=client;
-            }
-            else {
-                let client:Client;
-                user={
-                    role:role,
-                    firstname:firstname,
-                    lastname:lastname,
-                    email:email,
-                    password:password
-                }
-            }
-        }
-        else{
-            let provider:Provider;
-
-            provider={
-                role:role,
-                firstname:firstname,
-                lastname:lastname,
-                email:email,
-                password:password,
-                profession:profession
-            }
-
-            user=provider;
-        }
-
-        const response = await register(user);
-
-        if(response.success)
-        {
-            setGlobalErrors("User registered with success")
-            setIsSuccess(true)
-        }
-        else{
-            if(response.error)
-                setGlobalErrors(response.error)
-        }
+        
     }
 
     return (
         <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10" >
-            <form onSubmit={(e)=>{handleSubmit(e)}} className="w-full flex flex-col justify-center items-center">
+            <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col justify-center items-center" noValidate>
 
                 <h1 className="text-3xl text-center">Registration Form</h1>
 
                 <div className="w-full m-[10px] flex flex-col">
                     <label className="=">Firstname</label>
-                    <input type="text" onChange={(e)=>setFirstname(e.target.value)} className="border rounded min-h-[40px] w-auto"/>
-                    { firstnameError && <p className="text-red-500">{firstnameError}</p>}
+                    <input type="text" className="border rounded min-h-[40px] w-auto" {...register("firstname", {
+                        required:{
+                            value:true,
+                            message:"Firstname is required"
+                        }
+                    })}/>
+                    <p className="text-red-500">{errors.firstname?.message}</p>
                 </div>
 
                 <div className="w-full m-[10px] flex flex-col">
-                    <label className="=">Lastname</label>
-                    <input type="text" onChange={(e)=>setLastname(e.target.value)} className="border rounded min-h-[40px]"/>
-                    { lastnameError && <p className="text-red-500">{lastnameError}</p> }
+                    <label className="">Lastname</label>
+                    <input type="text" className="border rounded min-h-[40px]" {...register("lastname",{
+                        required:{
+                            value:true,
+                            message:"Lastname is required"
+                        }
+                    })}/>
+                    <p className='text-red-500'>{errors.lastname?.message}</p>
                 </div>
 
                 <div className="w-full m-[10px] flex flex-col">
                     <label className="">Email</label>
-                    <input type="email" onChange={(e)=>setEmail(e.target.value)} className="border rounded min-h-[40px]"/>
-                    { emailError && <p id="error-message" className="text-red-500">{emailError}</p> }
+                    <input type="email" className="border rounded min-h-[40px]" {...register("email",{
+                        pattern:{
+                            value:/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/,
+                            message:"This email is not valid"
+                        },
+                        validate:(value)=>{
+                            return (
+                                value!=="mndour428@gmail.com" ||
+                                "This email is not allowed"
+                            )
+                        }
+                    })}/>
+                    <p className='text-red-500'>{errors.email?.message}</p>
                 </div>
 
                 <div className="w-full m-[10px] flex flex-col">
                     <label className="m">Register as:</label>
-                    <select className="border rounded min-h-[40px]" onChange={(e)=>setRole(e.target.value)}>
+                    <select className="border rounded min-h-[40px]" {...register("role",{
+                        required:{
+                            value:true,
+                            message:"Role is required"
+                        }
+                    })}>
                         <option value="CLIENT">Client</option>
                         <option value="PROVIDER">Provider</option>
                     </select>
+                    <p className='text-red-500'>{errors.role?.message}</p>
                 </div>
 
                 <div className="w-full m-[10px] flex flex-col">
                     <label>Profession</label>
-                    <input type="text" className="border rounded min-h-[40px]" onChange={(e)=>{setProfession(e.target.value)}}/>
-                    { professionError && <p className="text-red-500">{professionError}</p> }
+                    <input type="text" className="border rounded min-h-10" {...register("profession",{
+                        required:{
+                            value:true,
+                            message:"profession is required"
+                        }
+                    })}/>
+                    <p className='text-red-500'>{errors.profession?.message}</p>
                 </div>
 
                 <div className="w-full m-[10px] flex flex-col">
                     <label className="">Password</label>
-                    <input type="password" onChange={(e)=>setPassword(e.target.value)} className="border rounded min-h-[40px]"/>
-                    { passwordError && <p className="text-red-500">{passwordError}</p> }
+                    <input type="password" className="border rounded min-h-[40px]" {...register("password",{
+                        required:{
+                            value:true,
+                            message:"password is required"
+                        }
+                    })}/>
+                    <p className='text-red-500'>{errors.password?.message}</p>
                 </div>
 
                 <div className="w-full m-[10px] flex flex-col">
                     <label className="">Confirm Password</label>
-                    <input type="password" onChange={(e)=>{setConfirmPassword(e.target.value)}} className="border rounded min-h-[40px]"/>
-                    { confirmPasswordError && <p className="text-red-500">{confirmPasswordError}</p> }
+                    <input type="password" className="border rounded min-h-[40px]" {...register("confirmPassword",{
+                        required:{
+                            value:true,
+                            message:"You have to confirm the password"
+                        }
+                    })}/>
+                    <p className='text-red-500'>{errors.confirmPassword?.message}</p>
                 </div>
 
                 <div className="w-full m-[10px] flex flex-col justify-center">
                     <button type="submit" className="bg-sky-500 text-white rounded p-[5px] w-full">Submit</button>
                 </div>
                 <div>
-                    { globalErrors && <p className={`text-sm ${isSuccess ? "text-green-500" : "text-red-500"}`}>{globalErrors}</p> }
+                    
                 </div>
             </form>
         </div>

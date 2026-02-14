@@ -1,5 +1,6 @@
 export enum Role{ADMIN="ADMIN",PROVIDER="PROVIDER",CLIENT="CLIENT"}
 
+//user object type
 export interface User
 {
     readonly role?:string;
@@ -7,9 +8,9 @@ export interface User
     firstname:string;
     lastname:string;
     email:string;
-    password:string;
 }
 
+//provider object type
 export interface Provider extends User
 {
     profession:string;
@@ -28,18 +29,15 @@ export interface Login
     password:string;
 }
 
-export interface ApiResponse
+
+export interface LoginResponse
 {
     readonly token?:string;
-    user?:User;
+    readonly refreshToken?:string;
+    profile?:User;
 }
 
-
-export type ApiResult<T> = {
-    success: boolean;
-    data?: T;
-    error?: string;
-};
+;
 
 export interface Service {
     id: number;
@@ -52,5 +50,12 @@ export interface Service {
 }
 
 export interface ServiceProposal{
-
+    id:number;
+    serviceName:string;
+    providerEmail:string;
+    providerFirstName:string;
+    providerLastName:string;
+    price:number;
+    providerid:number;
+    serviceid:number;
 }
