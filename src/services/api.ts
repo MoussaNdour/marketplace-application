@@ -6,17 +6,15 @@ const axiosConfig:AxiosRequestConfig = {
     baseURL: 'http://localhost:8080/api',
     timeout: 10000,
     headers : {
-        'Content-type' : 'applicaion/json'
+        'Content-type' : 'application/json'
     }
 }
 
 const axiosClient:AxiosInstance=axios.create(axiosConfig);
 
 export const connect = async (login:Login):Promise<LoginResponse> =>{
-
     try{
-        const response=await axios.post("/auth/connect");
-
+        const response=await axiosClient.post("/auth/connect");
         return response.data;
     }
     catch(e){

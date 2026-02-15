@@ -8,11 +8,11 @@ import HowItWork from "./pages/HowItWork";
 import Service from "./pages/Service";
 import MainLayout from "./pages/layout/MainLayout";
 import EmptyLayout from "./pages/layout/EmptyLayout";
-import Register from "./pages/Register";
 import ProtectedRoute from "./pages/layout/ProtectedRoute";
 import ProvidersByService from "./pages/ProvidersByService";
 import AskingService from "./pages/AskingService";
 import ServicesProposals from "./pages/ServicesProposals";
+import RegisterForm from './components/RegistrationForm';
 
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
 
                 <Route element={<EmptyLayout />}>
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register/>}/>
+                    <Route path="/register" element={<RegisterForm/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

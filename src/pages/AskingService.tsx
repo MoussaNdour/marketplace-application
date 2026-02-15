@@ -2,7 +2,7 @@ import {Provider, Service} from "../types";
 import {useEffect} from "react";
 
 
-const AskingService = ({provider,service}:{provider:Provider, service:Service }) =>{
+const AskingService = () =>{
 
     useEffect(() => {
 
