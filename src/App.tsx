@@ -5,11 +5,9 @@ import Services from "./pages/Services";
 import Providers from "./pages/Providers";
 import About from "./pages/About";
 import HowItWork from "./pages/HowItWork";
-import Service from "./pages/Service";
 import MainLayout from "./pages/layout/MainLayout";
 import EmptyLayout from "./pages/layout/EmptyLayout";
 import ProtectedRoute from "./pages/layout/ProtectedRoute";
-import ProvidersByService from "./pages/ProvidersByService";
 import AskingService from "./pages/AskingService";
 import ServicesProposals from "./pages/ServicesProposals";
 import RegisterForm from './components/RegistrationForm';
@@ -30,8 +28,6 @@ const App = () => {
                         <About/>
                     </ProtectedRoute>} />
                     <Route path="/askService" element={<ProtectedRoute children={<AskingService/>} />} />
-                    <Route path="/service/:id" element={<Service />} />
-                    <Route path="service/:serviceId/providers/" element={<ProvidersByService/>} />
                     <Route path={"/servicesproposals"} element={<ServicesProposals />} />
                 </Route>
 

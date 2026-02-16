@@ -1,7 +1,7 @@
-import React from "react";
 import {Provider} from "../types"
 import profile from "../assets/profile.jpg"
 import {Link} from "react-router-dom";
+import { Button } from "@mui/material";
 
 type Props = {
     provider:Provider;
@@ -16,7 +16,7 @@ const ProviderCard = ({provider}:Props) => {
                 <div className="rounded-full w-[70px] h-[70px] m-auto"  style={{ backgroundImage:`url(${profile})`, backgroundSize: "cover" }}></div>
                 <h1 className={"text-white text-center"}>{provider.firstname}  {provider.lastname}</h1>
             </div>
-            <div className={"mx-[10px] text-white text-justify"}>
+            <div className={"mx-2.5 text-white text-justify"}>
                 <p className={"text-sm"}>
                     _I'm frontend developer with 3 years of experience. I build nice UI using technologies like react and tailwind css
                 </p>
@@ -27,8 +27,8 @@ const ProviderCard = ({provider}:Props) => {
                     _{provider.yearsOfExperience} year(s) of experience
                 </h2>
             </div>
-            <div className={"flex justify-center mt-[10px]"}>
-                <Link to={"/askService"} className={"bg-amber-400 rounded-[10px] text-white p-[10px] hover:text-white/80"}>Ask Service</Link>
+            <div className={"flex justify-center mt-2.5"}>
+                <Link to={"/askService"} className={""}><Button variant="contained">See Profile</Button></Link>
             </div>
         </div>
     )

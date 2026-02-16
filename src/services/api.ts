@@ -1,9 +1,10 @@
 import axios, {AxiosInstance,AxiosRequestConfig} from 'axios';
-import {Login, Service, User, Provider, ServiceProposal, LoginResponse} from "../types";
+import {Login, Service, User, Provider, ServiceProposal, LoginResponse, UserDisconnectedError} from "../types";
+import { isTokenExpired } from './auth';
 
 
 const axiosConfig:AxiosRequestConfig = {
-    baseURL: 'http://192.168.1.5/api',
+    baseURL: 'http://192.168.1.12/api',
     timeout: 10000,
     headers : {
         'Content-type' : 'application/json'
@@ -13,6 +14,9 @@ const axiosConfig:AxiosRequestConfig = {
 const axiosClient:AxiosInstance=axios.create(axiosConfig);
 
 export const connect = async (login:Login):Promise<LoginResponse> =>{
+    localStorage.removeItem("token")
+    localStorage.removeItem("refreshToken")
+    
     try{
         const response=await axiosClient.post("/auth/connect",login);
         return response.data;
@@ -39,7 +43,7 @@ export const registerUser = async (user: User): Promise<LoginResponse> => {
 export const getAllServices = async ():Promise<Array<Service>> =>{
 
     try{
-        const response= await axiosClient.get("/service")
+        const response= await axiosClient.get("/public/services")
 
         return response.data;
     }
@@ -53,7 +57,7 @@ export const getAllServices = async ():Promise<Array<Service>> =>{
 export const getAllServicesProposals= async ():Promise<Array<ServiceProposal>> => {
 
     try{
-        const response=await axiosClient.get("/service-proposal")
+        const response=await axiosClient.get("/public/service-proposals")
         return response.data;
     }
     catch (e) {
@@ -77,27 +81,10 @@ export const getServiceById = async (id:number)=>{
         })
 }
 
-export const getServicesProposalByProvider= async () => {
 
-    axiosClient.get("/service-proposal/provider",
-        {
-            params:{
-                providerId:1
-            }
-        })
-        .then(function(response){
-            console.log(response.data)
-        })
-        .catch(function (error){
-            console.error(error)
-            throw error
-        })
-
-}
-
-export const getProviderByService = async (idservice:number):Promise<Array<Provider>> =>{
+export const getProvidersByService = async (idservice:number):Promise<Array<Provider>> =>{
     try{
-        const response= await axiosClient.get<Provider[]>(`/service/${idservice}/providers`)
+        const response= await axiosClient.get<Provider[]>(`/public/services/${idservice}/providers`)
 
         return response.data
     }
@@ -114,7 +101,7 @@ export const getProviderByService = async (idservice:number):Promise<Array<Provi
 export const getAllProviders = async ():Promise<Array<Provider>> =>{
 
     try{
-        const providers= await axiosClient.get("/provider")
+        const providers= await axiosClient.get("/public/providers")
 
         return providers.data
     }
@@ -126,4 +113,33 @@ export const getAllProviders = async ():Promise<Array<Provider>> =>{
         }
         throw e
     }
+}
+
+export const refreshTokenRequest = async () =>{
+    const refreshToken = localStorage.getItem("refreshToken")
+    if(isTokenExpired(refreshToken))
+    {
+        localStorage.removeItem("refreshToken")
+
+        throw new UserDisconnectedError("User need to connect");
+    }
+    else{
+        try{
+            const response = await axiosClient.get("/auth/refreshToken",{
+                headers:{
+                    "Authorization": `Bearer ${refreshToken}`
+                }
+            })
+
+            localStorage.setItem("token",response.data)
+        }
+        catch(e:any){
+            if (e.response?.status === 401 || e.response?.status === 403) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("refreshToken");
+            }
+            throw e;
+        }
+    }
+    
 }

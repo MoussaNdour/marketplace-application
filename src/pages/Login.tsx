@@ -23,12 +23,15 @@ const Login = () => {
     const handleFormSubmit = async (data:typeof defaultValues) => {
         setErrorMessage("")
         try{
-            const response = await connect(data)
-            console.log(response)
+            const response = await connect(data);
+            localStorage.setItem("token",response.token)
+            localStorage.setItem("refreshToken", response.refreshToken)
+            localStorage.setItem("profile",JSON.stringify(response.profile))
+
+            navigate("/")
         }
         catch(e:any){
             setErrorMessage(e.response?.data  || "Une erreur est survenue")
-            console.log(e.response)
         }
         
     };

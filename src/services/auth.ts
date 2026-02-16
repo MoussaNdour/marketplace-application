@@ -14,8 +14,8 @@ export function isTokenExpired(token: string | null):boolean {
 
     if(token===null)
     {
-        localStorage.clear()
-        console.log("no token founded")
+        localStorage.removeItem("token")
+        
         return true;
     }
     else{
@@ -34,5 +34,5 @@ export function isTokenExpired(token: string | null):boolean {
             return false;
         }
     }
-
 }
+

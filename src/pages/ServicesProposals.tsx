@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import { getAllServicesProposals } from "../services/api";
 import { ServiceProposal } from "../types";
+import ServiceProposalPreview from "../components/ServiceProposalPreview";
 
 const ServicesProposals = () => {
 
@@ -19,10 +20,10 @@ const ServicesProposals = () => {
 
 
     return(
-        <div className="">
+        <div className="flex flex-wrap justify-center gap-8">
             {
                 serviceproposals?.map((serviceproposal)=>{
-                    return <p key={serviceproposal.id}>{serviceproposal.serviceName}</p>
+                    return <ServiceProposalPreview key={serviceproposal.id} service={serviceproposal}/>
                 })
             }
         </div>

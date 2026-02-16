@@ -31,9 +31,9 @@ export interface Login
 
 export type LoginResponse=
 {
-    token?:string;
-    refreshToken?:string;
-    profile?:User;
+    token:string;
+    refreshToken:string;
+    profile:User;
 }
 
 
@@ -56,5 +56,18 @@ export interface ServiceProposal{
     price:number;
     providerid:number;
     serviceid:number;
+    serviceCategory:string;
+    description:string;
+    mark:number;
 }
+
+export class UserDisconnectedError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = "UserDisconnectedError";
+       
+        Object.setPrototypeOf(this, UserDisconnectedError.prototype);
+    }
+}
+
 

@@ -22,8 +22,8 @@ const Services = () =>{
 
     return(
         <div className="m-[15px]">
-            <h1 className="text-center mb-2">Here are services available</h1>
-            <div className="grid gap-4 grid-cols-2 place-items-center">
+            <h1 className="text-center mb-2 text-2xl">Here are services available</h1>
+            <div className="grid gap-10 grid-cols-3 place-items-center">
                 {services.map((service)=>{
                     return <ServiceCard key={service.id} service={service}/>
                 })}
