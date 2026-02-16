@@ -4,8 +4,11 @@ import React, {useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import {isAuth} from "../../services/auth";
 
+type PropsType={
+    children:React.ReactNode
+}
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = ({children}:PropsType) => {
 
     const navigate=useNavigate()
 

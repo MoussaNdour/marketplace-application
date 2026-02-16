@@ -3,7 +3,7 @@ import {Login, Service, User, Provider, ServiceProposal, LoginResponse} from "..
 
 
 const axiosConfig:AxiosRequestConfig = {
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'http://192.168.1.5/api',
     timeout: 10000,
     headers : {
         'Content-type' : 'application/json'
@@ -14,7 +14,7 @@ const axiosClient:AxiosInstance=axios.create(axiosConfig);
 
 export const connect = async (login:Login):Promise<LoginResponse> =>{
     try{
-        const response=await axiosClient.post("/auth/connect");
+        const response=await axiosClient.post("/auth/connect",login);
         return response.data;
     }
     catch(e){
@@ -22,7 +22,7 @@ export const connect = async (login:Login):Promise<LoginResponse> =>{
     }
 }
 
-export const registerUser = async (user: User): Promise<User> => {
+export const registerUser = async (user: User): Promise<LoginResponse> => {
     try {
         const response = await axiosClient.post(
             "/auth/register",

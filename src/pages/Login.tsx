@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {connect} from "../services/api";
 import { TextField, Button, Typography, Stack } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -21,12 +21,14 @@ const Login = () => {
     const { isSubmitting, errors } = formState
 
     const handleFormSubmit = async (data:typeof defaultValues) => {
+        setErrorMessage("")
         try{
             const response = await connect(data)
             console.log(response)
         }
         catch(e:any){
-            setErrorMessage(e.response?.data?.message  || "Une erreur est survenue")
+            setErrorMessage(e.response?.data  || "Une erreur est survenue")
+            console.log(e.response)
         }
         
     };

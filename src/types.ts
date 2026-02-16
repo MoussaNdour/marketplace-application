@@ -1,6 +1,6 @@
 export enum Role{ADMIN="ADMIN",PROVIDER="PROVIDER",CLIENT="CLIENT"}
 
-//user object type
+
 export interface User
 {
     readonly role?:string;
@@ -10,7 +10,6 @@ export interface User
     email:string;
 }
 
-//provider object type
 export interface Provider extends User
 {
     profession:string;
@@ -30,14 +29,13 @@ export interface Login
 }
 
 
-export interface LoginResponse
+export type LoginResponse=
 {
-    readonly token?:string;
-    readonly refreshToken?:string;
+    token?:string;
+    refreshToken?:string;
     profile?:User;
 }
 
-;
 
 export interface Service {
     id: number;
@@ -59,3 +57,4 @@ export interface ServiceProposal{
     providerid:number;
     serviceid:number;
 }
+
