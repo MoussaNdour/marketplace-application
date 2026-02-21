@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {getAllServices} from "../services/api";
 import ServiceCard from "../components/ServiceCard"
 import {Service} from "../types";
+import { Typography } from "@mui/material";
 
 
 
@@ -21,8 +22,8 @@ const Services = () =>{
     }, []);
 
     return(
-        <div className="m-[15px]">
-            <h1 className="text-center mb-2 text-2xl">Here are services available</h1>
+        <div className="m-3.75">
+            <Typography variant="h3" className="text-center" gutterBottom>Here are services available</Typography>
             <div className="grid gap-10 grid-cols-3 place-items-center">
                 {services.map((service)=>{
                     return <ServiceCard key={service.id} service={service}/>

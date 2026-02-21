@@ -15,6 +15,7 @@ export interface Provider extends User
     profession:string;
     level:string;
     yearsOfExperience:string;
+    description:string;
 }
 
 export interface Client extends User

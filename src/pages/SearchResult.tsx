@@ -32,7 +32,7 @@ const SearchResultPage = () => {
     },[])
 
   return (
-    <div className='pt-5'>
+    <div className='p-5'>
         <h1 className='text-center text-3xl'>Results of researchs</h1>
         <div className='mt-6 mb-6'>
             <form className="flex justify-center gap-x-2.5">
