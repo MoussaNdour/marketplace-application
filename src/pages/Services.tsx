@@ -11,7 +11,7 @@ const Services = () =>{
 
 
     useEffect(() => {
-        const fetServices= async ()=>{
+        const fetServices= async () => {
             const response = await getAllServices()
             setServices(response)
 

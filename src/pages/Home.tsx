@@ -1,7 +1,7 @@
 import { Briefcase, Shield, Zap, Users } from "lucide-react";
 import {Link} from "react-router-dom";
 import { motion } from "framer-motion";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Button} from "@mui/material"
 import ServiceProposalPreview from "../components/ServiceProposalPreview";
 import { ServiceProposal } from "../types";
@@ -22,11 +22,8 @@ const Home = () => {
             providerFirstName: "Sarah",
             providerLastName: "Johnson",
             price: 1000,
-            providerid: 1,
-            serviceid: 1,
             serviceCategory: "design",
-            description: "Get a unique professional logo that represent your brand perfectly",
-            mark: 4.1
+            description: "Get a unique professional logo that represent your brand perfectly"
         },
         {
             id: 2,
@@ -35,11 +32,8 @@ const Home = () => {
             providerFirstName: "Sarah",
             providerLastName: "Johnson",
             price: 1000,
-            providerid: 2,
-            serviceid: 2,
             serviceCategory: "development",
             description: "Custom responsive website built in modern technologies",
-            mark: 4.1
         },
         {
             id: 3,
@@ -48,11 +42,8 @@ const Home = () => {
             providerFirstName: "Sarah",
             providerLastName: "Johnson",
             price: 1000,
-            providerid: 3,
-            serviceid: 3,
             serviceCategory: "marketing",
             description: "Compute social media strategy and content creation for your business",
-            mark: 4.1
         },
         {
             id: 4,
@@ -61,18 +52,15 @@ const Home = () => {
             providerFirstName: "Sarah",
             providerLastName: "Johnson",
             price: 1000,
-            providerid: 4,
-            serviceid: 4,
             serviceCategory: "writing",
-            description: "High quality content optimized for search engines",
-            mark: 4.1
+            description: "High quality content optimized for search engines and sustainability",
         }];
 
     const container = {
         hidden: {},
         show: {
             transition: {
-                staggerChildren: 0.2,
+                staggerChildren: 0.3,
             }
         }
     };
@@ -81,6 +69,8 @@ const Home = () => {
         hidden: { opacity: 0, y: 60 },
         show:   { opacity: 1, y: 0 }
     };
+
+    const [searchparam, setSearchparam] = useState<string>("")
 
     return(
         <div className="">
@@ -99,8 +89,8 @@ const Home = () => {
 
                 <div>
                     <form className="flex justify-center gap-x-2.5">
-                        <input className="bg-amber-50 rounded p-[15px] w-[100px] lg:w-[500px]" type="text" placeholder="what service are you looking for ?"/>
-                        <button className="bg-amber-500 p-[15px] rounded text-white cursor-pointer">Search</button>
+                        <input onChange={(e)=>setSearchparam(e.target.value)} className="bg-amber-50 rounded p-[15px] w-[100px] lg:w-[500px]" type="text" placeholder="what service are you looking for ?"/>
+                        <Button href={`/search/${searchparam}`} variant="contained" className="bg-amber-500 p-[15px] rounded text-white cursor-pointer">Search</Button>
                     </form>
                 </div>
             </section>
@@ -109,7 +99,7 @@ const Home = () => {
                     variants={container}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: false, amount: 0.7 }}
+                    viewport={{ once: false, amount: 0.6 }}
                     className="p-[50px] flex flex-col justify-center items-center lg:flex-row gap-15 bg-slate-100"
                 >
                     <motion.div variants={item}>
@@ -155,14 +145,12 @@ const Home = () => {
 
             </section>
             <section className="p-5 flex flex-col justify-center items-center">
-                <h1 className="text-xl ">Featured Services</h1>
-                <h2 className="">Browse our most popular services</h2>
-                <div className="grid lg:grid-cols-2 lg:grid-rows-2 gap-x-5 gap-y-5 m-[15px]">
-
+                <h1 className="text-xl mb-4">Featured Services</h1>
+                <h2 className="mb-4">Browse our most popular services</h2>
+                <div className="grid lg:grid-cols-2 lg:grid-rows-2 gap-x-18 gap-y-18 m-[15px]">
                     {services.map((service)=>{
                         return <ServiceProposalPreview key={service.id} service={service}/>
                     })}
-
                 </div>
                 <Link to="/services" className="p-2.5 border-[0.3px] rounded text-sm hover:bg-amber-500 hover:text-white cursor-pointer">View All Serices</Link>
 

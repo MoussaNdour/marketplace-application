@@ -1,3 +1,25 @@
 @import "tailwindcss";
 
 @tailwind utilities;
+
+:root {
+  /* On définit le facteur d'échelle : 1.25 correspond à +25% */
+  --card-hover-scale: 1.03;
+  /* On définit une transition standard pour tout le projet */
+  --transition-smooth: all 0.3s ease-in-out;
+}
+
+.card-item {
+  transition: var(--transition-smooth);
+  /* Optionnel : pour éviter que la carte ne chevauche mal les autres */
+  z-index: 1; 
+}
+
+.card-item:hover {
+  /* On utilise scale avec la variable */
+  transform: scale(var(--card-hover-scale));
+  /* On augmente le z-index pour que la carte passe au-dessus des voisines */
+  z-index: 10;
+  /* Optionnel : ajouter une petite ombre pour accentuer l'effet de relief */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}

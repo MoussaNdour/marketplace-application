@@ -54,11 +54,8 @@ export interface ServiceProposal{
     providerFirstName:string;
     providerLastName:string;
     price:number;
-    providerid:number;
-    serviceid:number;
     serviceCategory:string;
     description:string;
-    mark:number;
 }
 
 export class UserDisconnectedError extends Error {

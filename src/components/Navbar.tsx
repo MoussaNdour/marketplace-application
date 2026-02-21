@@ -11,10 +11,10 @@ const Navbar = () => {
             <Menu className="lg:hidden order-3" />
             <nav className="lg:block hidden order-1">
                 <ul className="flex gap-2">
-                    <li><NavLink to="/services" ><span className="hover:text-sky-500 text-xl">Services</span></NavLink></li>
-                    <li><NavLink to="/providers" ><span className="hover:text-sky-500 text-xl">Providers</span></NavLink></li>
-                    <li><NavLink to="/servicesproposals" ><span className="hover:text-sky-500 text-xl">Service-Proposals</span></NavLink></li>
-                    <li><NavLink to="about" ><span className="hover:text-sky-500 text-xl">About</span></NavLink></li>
+                    <li><NavLink to="/services" ><span className="text-sky-500 text-xl hover:opacity-65">Services</span></NavLink></li>
+                    <li><NavLink to="/providers" ><span className="text-sky-500 text-xl hover:opacity-65">Providers</span></NavLink></li>
+                    <li><NavLink to="/servicesproposals" ><span className="text-sky-500 text-xl hover:opacity-65">Service-Proposals</span></NavLink></li>
+                    <li><NavLink to="about" ><span className="text-sky-500 text-xl hover:opacity-65">About</span></NavLink></li>
                 </ul>
 
             </nav>

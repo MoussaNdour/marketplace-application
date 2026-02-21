@@ -1,3 +1,5 @@
+import './App.css';
+
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,6 +13,7 @@ import ProtectedRoute from "./pages/layout/ProtectedRoute";
 import AskingService from "./pages/AskingService";
 import ServicesProposals from "./pages/ServicesProposals";
 import RegisterForm from './components/RegistrationForm';
+import SearchResultPage from './pages/SearchResult';
 
 
 const App = () => {
@@ -29,6 +32,7 @@ const App = () => {
                     </ProtectedRoute>} />
                     <Route path="/askService" element={<ProtectedRoute children={<AskingService/>} />} />
                     <Route path={"/servicesproposals"} element={<ServicesProposals />} />
+                    <Route path="/search/:searchData" element={<SearchResultPage/>} />
                 </Route>
 
                 <Route element={<EmptyLayout />}>

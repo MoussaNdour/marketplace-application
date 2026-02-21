@@ -7,7 +7,7 @@ type PropsType={
 
 const ServicerPreview = ({service}:PropsType) => {
   return (
-    <div className="rounded">
+    <div className="rounded card-item">
         <div className="relative h-[120px] lg:h-[220px] w-[199px] lg:w-[399px] rounded" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80)`, backgroundSize : 'cover' }}>
             <p className="absolute text-[10px] bg-white p-[5px] rounded-[20px] top-2 right-2">{service.serviceCategory}</p>
         </div>

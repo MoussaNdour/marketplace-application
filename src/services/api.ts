@@ -4,7 +4,7 @@ import { isTokenExpired } from './auth';
 
 
 const axiosConfig:AxiosRequestConfig = {
-    baseURL: 'http://192.168.1.12/api',
+    baseURL: 'http://localhost:8080/api',
     timeout: 10000,
     headers : {
         'Content-type' : 'application/json'
@@ -142,4 +142,20 @@ export const refreshTokenRequest = async () =>{
         }
     }
     
+}
+
+export const searchService = async (data:string):Promise<Array<Service>> => {
+    try{
+        const response= await axiosClient.get("/public/services",{
+            params:{
+                name:data,
+            }
+        })
+
+        return response.data;
+    }
+    catch(e){
+        console.error("API error:", e);
+        throw e;
+    }
 }
