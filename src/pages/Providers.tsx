@@ -20,7 +20,7 @@ const Providers = () => {
     return(
         <div>
             <h1 className="text-center text-2xl">Here are our providers</h1>
-            <div className="grid grid-cols-3 place-items-center gap-y-[50px]">
+            <div className="grid grid-cols-3 place-items-center gap-y-12.5">
                 {
                     providers?.map((provider)=>{
                         return <ProviderCard key={provider.id} provider={provider} />

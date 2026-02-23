@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { ServiceProposal } from '../types';
 import { getProposalsByService } from '../services/api';
+import ServiceProposalPreview from '../components/ServiceProposalPreview';
+import { Typography } from '@mui/material';
 
 const ProposalsByService = () => {
 
@@ -13,6 +15,8 @@ const ProposalsByService = () => {
       if(id){
         const response = await getProposalsByService(parseInt(id));
 
+        setProposals(response)
+
         console.log(response);
       }
     }
@@ -22,7 +26,14 @@ const ProposalsByService = () => {
 
   return (
     <div>
-      <p>You're going to see here the proposals for the service that have id:{id}</p>
+      <p className='text-3xl text-center m-4'>You're going to see here the proposals for the service that have id:{id}</p>
+      <div className='flex flex-wrap justify-center gap-8'>
+        {
+          proposals?.map((serviceproposal)=>{
+              return <ServiceProposalPreview key={serviceproposal.id} service={serviceproposal}/>
+          })
+        }
+      </div>
     </div>
   )
 }
