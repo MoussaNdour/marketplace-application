@@ -12,6 +12,7 @@ export interface User
 
 export interface Provider extends User
 {
+    id:number;
     profession:string;
     level:string;
     yearsOfExperience:string;

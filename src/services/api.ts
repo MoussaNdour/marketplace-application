@@ -98,6 +98,23 @@ export const getProvidersByService = async (idservice:number):Promise<Array<Prov
     }
 }
 
+export const getProposalsByService = async (idservice:number):Promise<Array<ServiceProposal>> =>{
+
+    try{
+        const response = await axiosClient.get(`/public/services/${idservice}/proposals`)
+
+        return response.data;
+    }
+    catch(e){
+        if (axios.isAxiosError(e)) {
+            console.error(e.response?.data)
+        } else {
+            console.error(e)
+        }
+        throw e
+    }
+}
+
 export const getAllProviders = async ():Promise<Array<Provider>> =>{
 
     try{
@@ -159,3 +176,4 @@ export const searchService = async (data:string):Promise<Array<Service>> => {
         throw e;
     }
 }
+

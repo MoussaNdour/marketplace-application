@@ -10,7 +10,7 @@ const ProviderCard = ({provider}:Props) => {
 
 
     return(
-        <Card variant="outlined" className="w-100">
+        <Card variant="outlined" className="w-100 ">
             <CardContent>
                 <div className="flex flex-col justify-center mt-3.75">
                     <div className="rounded-full w-20.5 h-20.5 m-auto"  style={{ backgroundImage:`url(${profile})`, backgroundSize: "cover" }}></div>
@@ -28,7 +28,7 @@ const ProviderCard = ({provider}:Props) => {
                     </Typography>
                 </div>
                 <div className={"flex justify-center mt-2.5"}>
-                    <Button fullWidth variant="contained" href="#">See Profile</Button>
+                    <Button fullWidth variant="contained" href={`/providers/${provider.id}`}>See Profile</Button>
                 </div> 
             </CardContent>
             

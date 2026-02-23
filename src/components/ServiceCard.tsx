@@ -15,8 +15,8 @@ const ServiceCard = ({ service }: {service:any}) => {
                     <Typography variant="h6" className="text-center" gutterBottom>{service.name}</Typography>
                     <Typography variant="body1" gutterBottom className="">{service.description}</Typography>
                     <CardActions className="">
-                        <Button href="/services/" size="small">See providers</Button>
-                        <Button href="/providers" size="small">See proposals</Button>
+                        <Button href={`/services/${service.id}/providers`} size="small">See providers</Button>
+                        <Button href={`/services/${service.id}/proposals`} size="small">See proposals</Button>
                     </CardActions>
                 </CardContent>
                 

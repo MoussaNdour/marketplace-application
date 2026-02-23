@@ -100,7 +100,7 @@ const Home = () => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: false, amount: 0.6 }}
-                    className="p-[50px] flex flex-col justify-center items-center lg:flex-row gap-15 bg-slate-100"
+                    className="px-12.5 py-30 flex flex-col justify-center items-center lg:flex-row gap-15 bg-slate-100"
                 >
                     <motion.div variants={item}>
                         <div className="flex flex-col items-center justify-center">
