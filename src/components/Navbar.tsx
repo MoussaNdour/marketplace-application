@@ -1,12 +1,13 @@
 import {NavLink, Link} from "react-router-dom";
 import { Menu } from "lucide-react";
 import {isAuth} from "../services/auth";
+import { Box } from "@mui/material";
 
 const Navbar = () => {
 
 
     return (
-        <div className="flex justify-between p-5  bg-slate-200">
+        <Box bgcolor={"grey.300"} className="flex justify-between p-5">
             <Link to=""><h1 className="text-4xl text-cyan font-bold text-cyan-400 order-1">ServiceLink</h1></Link>
             <Menu className="lg:hidden order-3" />
             <nav className="lg:block hidden order-1">
@@ -21,7 +22,7 @@ const Navbar = () => {
 
             {!isAuth() && <Link to="/login"><button className="text-white bg-sky-500 hover:opacity-50 px-[15px] py-[5px] rounded cursor-pointer">Login</button></Link>}
 
-        </div>
+        </Box>
     )
 }
 

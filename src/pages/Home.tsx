@@ -2,7 +2,7 @@ import { Briefcase, Shield, Zap, Users } from "lucide-react";
 import {Link} from "react-router-dom";
 import { motion } from "framer-motion";
 import {useEffect, useState} from "react";
-import {Button} from "@mui/material"
+import {Button,Box} from "@mui/material"
 import ServiceProposalPreview from "../components/ServiceProposalPreview";
 import { ServiceProposal } from "../types";
 
@@ -94,13 +94,13 @@ const Home = () => {
                     </form>
                 </div>
             </section>
-            <section>
+            <Box component={"section"} bgcolor="grey.300">
                 <motion.div
                     variants={container}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: false, amount: 0.6 }}
-                    className="px-12.5 py-30 flex flex-col justify-center items-center lg:flex-row gap-15 bg-slate-100"
+                    className="px-12.5 py-30 flex flex-col justify-center items-center lg:flex-row gap-15 "
                 >
                     <motion.div variants={item}>
                         <div className="flex flex-col items-center justify-center">
@@ -143,7 +143,7 @@ const Home = () => {
 
                 </motion.div>
 
-            </section>
+            </Box>
             <section className="p-5 flex flex-col justify-center items-center">
                 <h1 className="text-xl mb-4">Featured Services</h1>
                 <h2 className="mb-4">Browse our most popular services</h2>

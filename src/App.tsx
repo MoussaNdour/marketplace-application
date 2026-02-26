@@ -16,12 +16,12 @@ import SearchResultPage from './pages/SearchResult';
 import ProviderProfilePreviewPage from './pages/providerprofilepreview';
 import ProvidersByService from './pages/ProvidersByService';
 import ProposalsByService from './pages/proposalsbyservice';
+import PermanentDrawerLeft from './pages/providerDashboard';
 
 
 const App = () => {
 
     return(
-
         <BrowserRouter>
             <Routes>
                 <Route element={<MainLayout />}>
@@ -35,10 +35,12 @@ const App = () => {
                     <Route path="/providers/:id" element={<ProviderProfilePreviewPage/>} />
                     <Route path="/services/:id/providers" element={<ProvidersByService/>} />
                     <Route path="/services/:id/proposals" element={<ProposalsByService/>} />
+                    
                 </Route>
                 <Route element={<EmptyLayout />}>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<RegisterForm/>}/>
+                    <Route path="/provider/dashboard" element={<PermanentDrawerLeft/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
