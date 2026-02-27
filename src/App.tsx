@@ -11,7 +11,7 @@ import EmptyLayout from "./pages/layout/EmptyLayout";
 import ProtectedRoute from "./pages/layout/ProtectedRoute";
 import AskingService from "./pages/AskingService";
 import ServicesProposals from "./pages/ServicesProposals";
-import RegisterForm from './components/RegistrationForm';
+import RegisterForm from './pages/RegistrationForm';
 import SearchResultPage from './pages/SearchResult';
 import ProviderProfilePreviewPage from './pages/providerprofilepreview';
 import ProvidersByService from './pages/ProvidersByService';
@@ -31,7 +31,8 @@ const App = () => {
                     <Route path="/about" element={<About/>} />
                     <Route path="/askService" element={<ProtectedRoute children={<AskingService/>} />} />
                     <Route path={"/servicesproposals"} element={<ServicesProposals />} />
-                    <Route path="/search/:searchData" element={<SearchResultPage/>} />
+                    <Route path="/search" element={<SearchResultPage searchData=''/>} />
+
                     <Route path="/providers/:id" element={<ProviderProfilePreviewPage/>} />
                     <Route path="/services/:id/providers" element={<ProvidersByService/>} />
                     <Route path="/services/:id/proposals" element={<ProposalsByService/>} />

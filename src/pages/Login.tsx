@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {connect} from "../services/api";
-import { TextField, Button, Typography, Stack } from "@mui/material";
+import { TextField, Button, Typography, Stack, Box, Paper } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
@@ -37,28 +37,31 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col items-center p-5 justify-center">
-            <Typography className="mb-5" variant="h4">Login</Typography>
-            <form className="max-w-[400px]" onSubmit={handleSubmit(handleFormSubmit)} noValidate>
-                <Stack spacing={4}>
-                    <TextField label="Email" fullWidth {...register("email",{
-                        required:{
-                            value:true,
-                            message:"The email is required"
-                        }
-                    })} error={!!errors.email} helperText={errors.email?.message} size="small"/>
-                    <TextField label="Password" {...register("password",{
-                        required:{
-                            value:true,
-                            message:"The password is required"
-                        }
-                    })} error={!!errors.password} helperText={errors.password?.message} type="password" size="small" fullWidth/>
-                    { errorMessage && <p className="text-red-500">{errorMessage}</p> }
-                    <Button type="submit" variant="contained" color="primary">{isSubmitting ? "Connecting..." : "Connect"}</Button>
+        <Box component={"main"} sx={{display:"flex", justifyContent:"center", alignItems:"center", minHeight: "100vh", width:"100%", bgcolor:"primary.light"}}>
+            <Paper sx={{width:500, p:8}}>
+                <Typography className="mb-5" variant="h6" textAlign={"center"} gutterBottom>Login</Typography>
+                <form  onSubmit={handleSubmit(handleFormSubmit)} noValidate>
+                    <Stack spacing={4}>
+                        <TextField label="Email" fullWidth {...register("email",{
+                            required:{
+                                value:true,
+                                message:"The email is required"
+                            }
+                        })} error={!!errors.email} helperText={errors.email?.message} size="small"/>
+                        <TextField label="Password" {...register("password",{
+                            required:{
+                                value:true,
+                                message:"The password is required"
+                            }
+                        })} error={!!errors.password} helperText={errors.password?.message} type="password" size="small" fullWidth/>
+                        { errorMessage && <p className="text-red-500">{errorMessage}</p> }
+                        <Link to={"/register"}><Typography variant="body1" color="primary.light" textAlign={"end"}>No Account ? register</Typography></Link>
+                        <Button type="submit" variant="contained" color="primary">{isSubmitting ? "Connecting..." : "Connect"}</Button>
 
-                </Stack>
-            </form>
-        </div>
+                    </Stack>
+                </form>
+            </Paper>
+        </Box>
     );
 };
 

@@ -74,7 +74,7 @@ const Home = () => {
 
     return(
         <div className="">
-            <section className="bg-sky-500 px-2.5 py-[130px]">
+            <section className="bg-sky-500 px-2.5 py-32.5">
                 <motion.h1
                     className="text-2xl lg:text-5xl text-center font-bold text-white"
                     style={{textAlign:"center", overflow : "hidden", whiteSpace: "nowrap"}}
@@ -89,8 +89,8 @@ const Home = () => {
 
                 <div>
                     <form className="flex justify-center gap-x-2.5">
-                        <input onChange={(e)=>setSearchparam(e.target.value)} className="bg-amber-50 rounded p-[15px] w-[100px] lg:w-[500px]" type="text" placeholder="what service are you looking for ?"/>
-                        <Button href={`/search/${searchparam}`} variant="contained" className="bg-amber-500 p-[15px] rounded text-white cursor-pointer">Search</Button>
+                        <input onChange={(e)=>setSearchparam(e.target.value)} className="bg-amber-50 rounded p-3.75 w-25 lg:w-125" type="text" placeholder="what service are you looking for ?"/>
+                        <Button variant="contained" className="bg-amber-500 p-3.75 rounded text-white cursor-pointer">Search</Button>
                     </form>
                 </div>
             </section>
@@ -147,7 +147,7 @@ const Home = () => {
             <section className="p-5 flex flex-col justify-center items-center">
                 <h1 className="text-xl mb-4">Featured Services</h1>
                 <h2 className="mb-4">Browse our most popular services</h2>
-                <div className="grid lg:grid-cols-2 lg:grid-rows-2 gap-x-18 gap-y-18 m-[15px]">
+                <div className="grid lg:grid-cols-2 lg:grid-rows-2 gap-x-18 gap-y-18 m-3.75">
                     {services.map((service)=>{
                         return <ServiceProposalPreview key={service.id} service={service}/>
                     })}
@@ -155,11 +155,11 @@ const Home = () => {
                 <Link to="/services" className="p-2.5 border-[0.3px] rounded text-sm hover:bg-amber-500 hover:text-white cursor-pointer">View All Serices</Link>
 
             </section>
-            <section className="bg-sky-500 p-[100px] flex flex-col justify-center items-center gap-5">
+            <section className="bg-sky-500 p-25 flex flex-col justify-center items-center gap-5">
                 <h1 className="text-3xl text-white font-bold text-center">Ready to Get Started?</h1>
                 <h2 className="text-xl text-white text-center">Join thousands of satisfied clients and professionals</h2>
                 <div className="flex flex-col lg:flex-row gap-2.5">
-                    <Button variant="contained" className="">Find Services</Button>
+                    <Button href="/search" variant="contained" className="">Find Services</Button>
                     <Button variant="contained" className="">Become Provider</Button>
                 </div>
             </section>

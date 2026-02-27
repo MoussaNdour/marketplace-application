@@ -18,7 +18,7 @@ const DashboardOverview = () => {
 
   return (
     <Box component="main">
-      <Typography variant='h4' sx={{ mb: 4, fontWeight: 'bold' }}>
+      <Typography textAlign={"center"} variant='h4' sx={{ mb: 4, fontWeight: 'bold' }}>
         Hello, Moussa Ndour
       </Typography>
 
@@ -46,7 +46,7 @@ const DashboardOverview = () => {
         <Grid size={{xs:12, sm:6, md:3}}>
           <Paper sx={{ p: 2, height: 180 }}>
             <Typography variant='subtitle1' sx={{ fontWeight: 'bold', mb: 1 }}>Average Rating</Typography>
-            <Box sx={{ height: 120 }}> {/* Hauteur fixe pour le container du chart */}
+            <Box sx={{ height: 120 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart layout="vertical" data={ratingData} margin={{ left: -30, right: 10 }}>
                   <XAxis type="number" hide />

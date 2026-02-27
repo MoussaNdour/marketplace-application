@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {Provider} from "../types";
 import { getAllProviders } from "../services/api";
 import ProviderCard from "../components/ProviderCard";
+import { Box, Typography } from "@mui/material";
 
 
 const Providers = () => {
@@ -18,8 +19,8 @@ const Providers = () => {
     }, []);
 
     return(
-        <div>
-            <h1 className="text-center text-2xl">Here are our providers</h1>
+        <Box p={2}>
+            <Typography variant="h4" textAlign={"center"} gutterBottom>Here are our providers</Typography>
             <div className="grid grid-cols-3 place-items-center gap-y-12.5">
                 {
                     providers?.map((provider)=>{
@@ -28,7 +29,7 @@ const Providers = () => {
                 }
             </div>
 
-        </div>
+        </Box>
     )
 }
 
