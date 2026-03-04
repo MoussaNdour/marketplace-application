@@ -44,12 +44,12 @@ const SearchResultPage = ({searchData}:PropsType) => {
         </div>
         <div className='grid grid-cols-3 pt-7'>
             
-            { results.map((service)=>{
+            { results ? results.map((service)=>{
                 return <ServiceCard key={service.id} service={service} />
-            }) }
+            }) : <p className='text-center'>No Result found</p> }
             
         </div>
-        { searchError && <p className='text-red-500 text-center'>{searchError}</p>}
+        { searchError && <p className='text-red-500 text-center'>{searchError}</p> }
     </div>
   )
 }

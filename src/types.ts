@@ -69,4 +69,9 @@ export class UserDisconnectedError extends Error {
     }
 }
 
-
+export interface MyTokenPayload {
+  sub: string;
+  role: string;
+  iat: number;
+  exp: number;
+}

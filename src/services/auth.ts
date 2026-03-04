@@ -1,5 +1,7 @@
 
+import { DeckRounded } from "@mui/icons-material";
 import {jwtDecode} from "jwt-decode";
+import { MyTokenPayload } from "../types";
 
 export function isAuth():boolean {
 
@@ -19,6 +21,7 @@ export function isTokenExpired(token: string | null):boolean {
         return true;
     }
     else{
+        
         const decoded=jwtDecode(token)
 
 
@@ -36,3 +39,19 @@ export function isTokenExpired(token: string | null):boolean {
     }
 }
 
+export const isProvider = (): boolean => {
+
+    if(isAuth()){
+        const token=localStorage.getItem("token");
+        const decoded = jwtDecode<MyTokenPayload>(token!);
+
+        if(decoded.role==="PROVIDER"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    return false;
+}

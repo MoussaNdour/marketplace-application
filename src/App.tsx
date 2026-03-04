@@ -17,6 +17,7 @@ import ProviderProfilePreviewPage from './pages/providerprofilepreview';
 import ProvidersByService from './pages/ProvidersByService';
 import ProposalsByService from './pages/proposalsbyservice';
 import PermanentDrawerLeft from './pages/providerDashboard';
+import ProviderLayout from './pages/layout/ProviderLayout';
 
 
 const App = () => {
@@ -41,7 +42,7 @@ const App = () => {
                 <Route element={<EmptyLayout />}>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<RegisterForm/>}/>
-                    <Route path="/provider/dashboard" element={<PermanentDrawerLeft/>}/>
+                    <Route path="/provider/dashboard" element={<ProviderLayout children={<PermanentDrawerLeft/>}/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
