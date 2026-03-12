@@ -15,20 +15,14 @@ import { CalendarMonth, DesignServices, EventNote, ManageAccounts, RateReview } 
 import { HomeIcon } from 'lucide-react';
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import DashboardOverview from './provider/dashboardoverview';
-import RequestsPage from './provider/requestspages';
-import ServicesCatalogPage from './provider/servicescatagalog';
-import ReviewFeedPage from './provider/reviewfeedpage';
+
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerLeft() {
-
-  const [currentPage,setCurrentPage]= useState(DashboardOverview)
-  const pages = [DashboardOverview,RequestsPage,ServicesCatalogPage,ReviewFeedPage]
+export default function SideBar() {
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box >
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -53,7 +47,7 @@ export default function PermanentDrawerLeft() {
         <List>
           
           <ListItem key={1} disablePadding>
-            <ListItemButton onClick={()=>setCurrentPage(pages[0])}>
+            <ListItemButton>
               <ListItemIcon sx={{color:"primary.main"}}>
                 <HomeIcon/>
               </ListItemIcon>
@@ -61,7 +55,7 @@ export default function PermanentDrawerLeft() {
             </ListItemButton>
           </ListItem>
           <ListItem key={2} disablePadding>
-            <ListItemButton onClick={()=>setCurrentPage(pages[1])}>
+            <ListItemButton >
               <ListItemIcon sx={{color:"primary.main"}}>
                 <WorkHistoryOutlinedIcon/>
               </ListItemIcon>
@@ -69,7 +63,7 @@ export default function PermanentDrawerLeft() {
             </ListItemButton>
           </ListItem>
           <ListItem key={3} disablePadding>
-            <ListItemButton onClick={()=>setCurrentPage(pages[2])}>
+            <ListItemButton >
               <ListItemIcon sx={{color:"primary.main"}}>
                 <DesignServices/>
               </ListItemIcon>
@@ -77,7 +71,7 @@ export default function PermanentDrawerLeft() {
             </ListItemButton>
           </ListItem>
           <ListItem key={4} disablePadding>
-            <ListItemButton onClick={()=>setCurrentPage(pages[3])}>
+            <ListItemButton >
               <ListItemIcon sx={{color:"primary.main"}}>
                 <RateReview/>
               </ListItemIcon>
@@ -106,12 +100,7 @@ export default function PermanentDrawerLeft() {
             </ListItem>
         </List>
       </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-      >
-        {currentPage}
-      </Box>
+    
     </Box>
   );
 }

@@ -1,8 +1,9 @@
 import {NavLink, Link} from "react-router-dom";
 import { Menu } from "lucide-react";
-import {isAuth} from "../services/auth";
+import {isAuth, logout} from "../services/auth";
 import { Box } from "@mui/material";
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const Navbar = () => {
@@ -22,7 +23,7 @@ const Navbar = () => {
 
             </nav>
 
-            {!isAuth() && <Link to="/login"><LoginOutlinedIcon/></Link>}
+            {isAuth() ?  <Link to={"/login"} onClick={()=>{logout()}}><LogoutIcon/></Link>: <Link to="/login"><LoginOutlinedIcon/></Link>}
 
         </Box>
     )

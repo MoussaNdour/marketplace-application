@@ -1,5 +1,5 @@
 
-import { DeckRounded } from "@mui/icons-material";
+
 import {jwtDecode} from "jwt-decode";
 import { MyTokenPayload } from "../types";
 
@@ -46,6 +46,40 @@ export const isProvider = (): boolean => {
         const decoded = jwtDecode<MyTokenPayload>(token!);
 
         if(decoded.role==="PROVIDER"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    return false;
+}
+
+export const getEmail = ():String | null => {
+    if(isAuth()){
+        const token=localStorage.getItem("token");
+        const decoded = jwtDecode<MyTokenPayload>(token!);
+
+        return decoded.sub;
+    }
+
+    return null;
+}
+
+export const logout = () => {
+    if(isAuth()){
+        localStorage.removeItem("token")
+        localStorage.removeItem("refreshToken")
+    }
+}
+
+export const isClient = (): boolean =>{
+    if(isAuth()){
+        const token=localStorage.getItem("token");
+        const decoded = jwtDecode<MyTokenPayload>(token!);
+
+        if(decoded.role==="CLIENT"){
             return true;
         }
         else{

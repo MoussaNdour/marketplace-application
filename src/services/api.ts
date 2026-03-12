@@ -7,16 +7,71 @@ const axiosConfig:AxiosRequestConfig = {
     baseURL: 'http://localhost:8080/api',
     timeout: 10000,
     headers : {
-        'Content-type' : 'application/json'
+        'Content-type' : 'application/json',
+        'Accept': 'application/json',
     }
 }
 
 const axiosClient:AxiosInstance=axios.create(axiosConfig);
 
+axiosClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+
+    // Vérification : si l'URL ne contient pas "/api/public/" et qu'on a un token
+    if (!config.url!.includes('/api/public/') && token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axiosClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    // Si l'erreur est 401 et que ce n'est pas déjà une tentative de rafraîchissement
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (refreshToken) {
+        try {
+          // Appel à votre endpoint de refresh (souvent public)
+          const res = await axios.post('http://localhost:8080/api/auth/refres', {
+            refreshToken: refreshToken
+          });
+
+          const newToken = res.data.accessToken;
+          localStorage.setItem('token', newToken);
+
+          // On met à jour le header de la requête initiale et on la rejoue
+          originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+          return axiosClient(originalRequest);
+        } catch (refreshError) {
+          // Si le refresh échoue aussi (ex: refreshToken expiré), on déconnecte
+          localStorage.clear();
+          window.location.href = '/login';
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+
+
 export const connect = async (login:Login):Promise<LoginResponse> =>{
     localStorage.removeItem("token")
     localStorage.removeItem("refreshToken")
-    
+    localStorage.removeItem("profile")
+
+
     try{
         const response=await axiosClient.post("/auth/connect",login);
         return response.data;
@@ -161,6 +216,7 @@ export const refreshTokenRequest = async () =>{
     
 }
 
+
 export const searchService = async (data:string):Promise<Array<Service>> => {
     try{
         const response= await axiosClient.get("/public/services",{
@@ -173,6 +229,24 @@ export const searchService = async (data:string):Promise<Array<Service>> => {
     }
     catch(e){
         console.error("API error:", e);
+        throw e;
+    }
+}
+
+export const getServicesByProvider = async (email:String): Promise<Array<Service>> => {
+    
+    try{
+        const response = await axios.get(`/provider/${email}/services`,
+            {
+                headers : {
+                    'Authorization' : `Bearer ${}`
+                }
+            }
+        );
+
+        return response.data;
+    }
+    catch(e:any){
         throw e;
     }
 }

@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {connect} from "../services/api";
 import { TextField, Button, Typography, Stack, Box, Paper } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { isProvider } from "../services/auth";
 
 const Login = () => {
 
@@ -28,7 +29,14 @@ const Login = () => {
             localStorage.setItem("refreshToken", response.refreshToken)
             localStorage.setItem("profile",JSON.stringify(response.profile))
 
-            navigate("/")
+            if(isProvider())
+            {
+                navigate("/provider/dashboard/overview")
+            }
+            else{
+                navigate("/")
+            }
+            
         }
         catch(e:any){
             setErrorMessage(e.response?.data  || "Une erreur est survenue")

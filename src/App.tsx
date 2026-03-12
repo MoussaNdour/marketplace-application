@@ -16,8 +16,11 @@ import SearchResultPage from './pages/SearchResult';
 import ProviderProfilePreviewPage from './pages/providerprofilepreview';
 import ProvidersByService from './pages/ProvidersByService';
 import ProposalsByService from './pages/proposalsbyservice';
-import PermanentDrawerLeft from './pages/providerDashboard';
 import ProviderLayout from './pages/layout/ProviderLayout';
+import DashboardOverview from './pages/provider/dashboardoverview';
+import ServicesCatalogPage from './pages/provider/servicescatagalog';
+import RequestsPage from './pages/provider/requestspages';
+import ReviewFeedPage from './pages/provider/reviewfeedpage';
 
 
 const App = () => {
@@ -42,7 +45,10 @@ const App = () => {
                 <Route element={<EmptyLayout />}>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<RegisterForm/>}/>
-                    <Route path="/provider/dashboard" element={<ProviderLayout children={<PermanentDrawerLeft/>}/>}/>
+                    <Route path="/provider/dashboard/overview" element={<ProviderLayout children={<DashboardOverview/>}/>}/>
+                    <Route path="/provider/dashboard/servicescatalog" element={<ProviderLayout children={<ServicesCatalogPage/>}/>}/>
+                    <Route path="/provider/dashboard/requests" element={<ProviderLayout children={<RequestsPage/>}/>}/>
+                    <Route path="/provider/dashboard/reviewfeed" element={<ProviderLayout children={<ReviewFeedPage/>}/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
