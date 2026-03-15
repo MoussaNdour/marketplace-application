@@ -21,7 +21,6 @@ const ServiceCard = ({ service }: {service:any}) => {
                 </CardContent>
                 
             </CardContent>
-            
 
         </Card>
     );

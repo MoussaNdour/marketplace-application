@@ -19,8 +19,9 @@ import ProposalsByService from './pages/proposalsbyservice';
 import ProviderLayout from './pages/layout/ProviderLayout';
 import DashboardOverview from './pages/provider/dashboardoverview';
 import ServicesCatalogPage from './pages/provider/servicescatagalog';
-import RequestsPage from './pages/provider/requestspages';
+import RequestsPage from './pages/provider/requestspage';
 import ReviewFeedPage from './pages/provider/reviewfeedpage';
+import ProviderProfile from './pages/provider/profile';
 
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
                     <Route path="/provider/dashboard/servicescatalog" element={<ProviderLayout children={<ServicesCatalogPage/>}/>}/>
                     <Route path="/provider/dashboard/requests" element={<ProviderLayout children={<RequestsPage/>}/>}/>
                     <Route path="/provider/dashboard/reviewfeed" element={<ProviderLayout children={<ReviewFeedPage/>}/>}/>
+                    <Route path="/provider/dashboard/profile" element={<ProviderLayout children={<ProviderProfile/>}/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

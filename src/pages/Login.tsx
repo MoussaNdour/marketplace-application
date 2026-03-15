@@ -25,6 +25,7 @@ const Login = () => {
         setErrorMessage("")
         try{
             const response = await connect(data);
+           
             localStorage.setItem("token",response.token)
             localStorage.setItem("refreshToken", response.refreshToken)
             localStorage.setItem("profile",JSON.stringify(response.profile))
@@ -39,7 +40,7 @@ const Login = () => {
             
         }
         catch(e:any){
-            setErrorMessage(e.response?.data  || "Une erreur est survenue")
+            setErrorMessage(e.response?.data  || "An unknow error happened")
         }
         
     };

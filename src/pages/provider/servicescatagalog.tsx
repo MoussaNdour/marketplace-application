@@ -16,10 +16,11 @@ const ServicesCatalogPage = () => {
         const email: String | null = getEmail();
         if (email) {
           const result = await getServicesByProvider(email);
+          
           setServices(result);
         }
       } catch (error) {
-        console.error("Erreur lors de la récupération des services:", error);
+        console.error("Error occured in the process of services retrieving:", error);
       } finally {
         setLoading(false);
       }
@@ -34,18 +35,17 @@ const ServicesCatalogPage = () => {
       <Box component="div" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
         <Typography variant='h6' sx={{ mb: 2 }}>Services Catalog</Typography>
     
-        <Grid container spacing={2}>
-          
-          {services.length > 0 ? (
+        <Grid container sx={{justifyContent:'center'}} spacing={2}>
+          {Array.isArray(services) && services.length > 0 ? (
             services.map((service) => (
-              <Grid key={service.id} size={{ xs: 12, sm: 6, md: 3 }}>
+              <Grid key={service.id} size={6}>
                 <ServiceCard service={service} />
               </Grid>
             ))
           ) : (
             !loading && <Typography>No service provided yet</Typography>
           )}
-        </Grid>
+      </Grid>
       </Box>
     </Box>
     

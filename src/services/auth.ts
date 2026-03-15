@@ -89,3 +89,12 @@ export const isClient = (): boolean =>{
 
     return false;
 }
+
+export const getToken = (): String | null => {
+    if(isAuth()){
+        return localStorage.getItem("token");
+    }
+    else{
+        return null;
+    }
+}
